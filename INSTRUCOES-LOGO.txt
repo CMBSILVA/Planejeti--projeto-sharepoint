@@ -1,0 +1,15 @@
+📌 IMPORTANTE - LOGO PLANEJE TI
+
+Para que a logo apareça corretamente:
+
+1. Faça upload do arquivo logo-planejeti.png no seu repositório GitHub
+2. A logo está configurada para carregar de:
+   https://raw.githubusercontent.com/CMBSILVA/Planejeti--projeto-sharepoint/main/logo-planejeti.png
+
+3. Se quiser usar outra logo, substitua a URL nos arquivos:
+   - 01-banner-hero.html
+   - 05-rodape.html
+   - index.html
+
+4. Ou faça upload da logo junto com os templates no GitHub
+
