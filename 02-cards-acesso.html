@@ -4,62 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards</title>
-    <style>
-        body { margin: 0; padding: 20px; font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
-    </style>
 </head>
-<body>
+<body style="margin:0;padding:30px 20px;font-family:'Segoe UI',sans-serif;background:#f5f7fa;">
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px;">
+<div style="max-width: 1200px; margin: 0 auto;">
     
-    <a href="/sites/PortalParceiros/SitePages/MinhasSolicitacoes.aspx" style="text-decoration: none;">
-        <div style="background: white; padding: 35px 25px; border-radius: 12px; text-align: center; 
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: all 0.3s; 
-                    border-top: 4px solid #0b73a8; cursor: pointer;"
-             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 30px rgba(11,115,168,0.15)';"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';">
-            <div style="font-size: 52px; margin-bottom: 18px;">📋</div>
-            <h3 style="color: #0b73a8; margin: 0 0 12px 0; font-size: 20px; font-weight: 600;">Minhas Solicitações</h3>
-            <p style="color: #666; margin: 0; font-size: 14px; line-height: 1.5;">Crie e acompanhe suas demandas</p>
-        </div>
-    </a>
+    <h2 style="color: #2c3e50; 
+               font-size: 36px; 
+               text-align: center; 
+               margin: 0 0 50px 0; 
+               font-weight: 700;">
+        Acesso Rápido
+    </h2>
     
-    <a href="/sites/PortalParceiros/Parceiros" style="text-decoration: none;">
-        <div style="background: white; padding: 35px 25px; border-radius: 12px; text-align: center; 
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: all 0.3s; 
-                    border-top: 4px solid #0b73a8; cursor: pointer;"
-             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 30px rgba(11,115,168,0.15)';"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';">
-            <div style="font-size: 52px; margin-bottom: 18px;">📁</div>
-            <h3 style="color: #0b73a8; margin: 0 0 12px 0; font-size: 20px; font-weight: 600;">Meus Documentos</h3>
-            <p style="color: #666; margin: 0; font-size: 14px; line-height: 1.5;">Acesse e envie arquivos</p>
-        </div>
-    </a>
-    
-    <a href="/sites/PortalParceiros/SitePages/Suporte.aspx" style="text-decoration: none;">
-        <div style="background: white; padding: 35px 25px; border-radius: 12px; text-align: center; 
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: all 0.3s; 
-                    border-top: 4px solid #0b73a8; cursor: pointer;"
-             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 30px rgba(11,115,168,0.15)';"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';">
-            <div style="font-size: 52px; margin-bottom: 18px;">💬</div>
-            <h3 style="color: #0b73a8; margin: 0 0 12px 0; font-size: 20px; font-weight: 600;">Suporte</h3>
-            <p style="color: #666; margin: 0; font-size: 14px; line-height: 1.5;">Precisa de ajuda?</p>
-        </div>
-    </a>
-    
-    <a href="/sites/PortalParceiros/SitePages/Configuracoes.aspx" style="text-decoration: none;">
-        <div style="background: white; padding: 35px 25px; border-radius: 12px; text-align: center; 
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: all 0.3s; 
-                    border-top: 4px solid #0b73a8; cursor: pointer;"
-             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 30px rgba(11,115,168,0.15)';"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)';">
-            <div style="font-size: 52px; margin-bottom: 18px;">⚙️</div>
-            <h3 style="color: #0b73a8; margin: 0 0 12px 0; font-size: 20px; font-weight: 600;">Configurações</h3>
-            <p style="color: #666; margin: 0; font-size: 14px; line-height: 1.5;">Gerencie preferências</p>
-        </div>
-    </a>
-    
+    <div style="display: grid; 
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+                gap: 30px;">
+        
+        <!-- Card 1 -->
+        <a href="/sites/PortalParceiros/SitePages/MinhasSolicitacoes.aspx" 
+           style="text-decoration: none; display: block;">
+            <div style="background: white; 
+                        padding: 0; 
+                        border-radius: 16px; 
+                        overflow: hidden;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                        cursor: pointer;
+                        position: relative;"
+                 onmouseover="this.style.transform='translateY(-12px)'; 
+                              this.style.boxShadow='0 20px 50px rgba(11,115,168,0.2)';"
+                 onmouseout="this.style.transform='translateY(0)'; 
+                             this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)';">
+                
+                <div style="background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); 
+                            padding: 40px 30px 30px; 
+                            text-align: center;">
+                    <div style="font-size: 56px; margin-bottom: 10px;">📋</div>
+                </div>
+                
+                <div style="padding: 30px 25px;">
+                    <h3 style="color: #0b73a8; 
+                               margin: 0 0 15px 0; 
+                               font-size: 22px; 
+                               font-weight: 700;">
+                        Minhas Solicitações
+                    </h3>
+                    <p style="color: #666; 
+                              margin: 0; 
+                              font-size: 15px; 
+                              line-height: 1.6;">
+                        Crie e acompanhe suas demandas em tempo real
+                    </p>
+                </div>
+                
+                <div style="position: absolute; 
+                            top: 15px; 
+                            right: 15px; 
+                            width: 40px; 
+                            height: 40px; 
+                            background: rgba(255,255,255,0.2); 
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-size: 20px;">
+                    →
+                </div>
+            </div>
+        </a>
+        
+        <!-- Card 2 -->
+        <a href="/sites/PortalParceiros/Parceiros" 
+           style="text-decoration: none; display: block;">
+            <div style="background: white; 
+                        padding: 0; 
+                        border-radius: 16px; 
+                        overflow: hidden;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                        cursor: pointer;
+                        position: relative;"
+                 onmouseover="this.style.transform='translateY(-12px)'; 
+                              this.style.boxShadow='0 20px 50px rgba(11,115,168,0.2)';"
+                 onmouseout="this.style.transform='translateY(0)'; 
+                             this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)';">
+                
+                <div style="background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); 
+                            padding: 40px 30px 30px; 
+                            text-align: center;">
+                    <div style="font-size: 56px; margin-bottom: 10px;">📁</div>
+                </div>
+                
+                <div style="padding: 30px 25px;">
+                    <h3 style="color: #0b73a8; 
+                               margin: 0 0 15px 0; 
+                               font-size: 22px; 
+                               font-weight: 700;">
+                        Meus Documentos
+                    </h3>
+                    <p style="color: #666; 
+                              margin: 0; 
+                              font-size: 15px; 
+                              line-height: 1.6;">
+                        Acesse e envie arquivos com segurança
+                    </p>
+                </div>
+                
+                <div style="position: absolute; 
+                            top: 15px; 
+                            right: 15px; 
+                            width: 40px; 
+                            height: 40px; 
+                            background: rgba(255,255,255,0.2); 
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-size: 20px;">
+                    →
+                </div>
+            </div>
+        </a>
+        
+        <!-- Card 3 -->
+        <a href="/sites/PortalParceiros/SitePages/Suporte.aspx" 
+           style="text-decoration: none; display: block;">
+            <div style="background: white; 
+                        padding: 0; 
+                        border-radius: 16px; 
+                        overflow: hidden;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                        cursor: pointer;
+                        position: relative;"
+                 onmouseover="this.style.transform='translateY(-12px)'; 
+                              this.style.boxShadow='0 20px 50px rgba(11,115,168,0.2)';"
+                 onmouseout="this.style.transform='translateY(0)'; 
+                             this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)';">
+                
+                <div style="background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); 
+                            padding: 40px 30px 30px; 
+                            text-align: center;">
+                    <div style="font-size: 56px; margin-bottom: 10px;">💬</div>
+                </div>
+                
+                <div style="padding: 30px 25px;">
+                    <h3 style="color: #0b73a8; 
+                               margin: 0 0 15px 0; 
+                               font-size: 22px; 
+                               font-weight: 700;">
+                        Suporte Técnico
+                    </h3>
+                    <p style="color: #666; 
+                              margin: 0; 
+                              font-size: 15px; 
+                              line-height: 1.6;">
+                        Nossa equipe pronta para ajudar você
+                    </p>
+                </div>
+                
+                <div style="position: absolute; 
+                            top: 15px; 
+                            right: 15px; 
+                            width: 40px; 
+                            height: 40px; 
+                            background: rgba(255,255,255,0.2); 
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-size: 20px;">
+                    →
+                </div>
+            </div>
+        </a>
+        
+    </div>
 </div>
 
 </body>

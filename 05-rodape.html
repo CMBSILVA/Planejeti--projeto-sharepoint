@@ -4,71 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodapé</title>
-    <style>
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-    </style>
 </head>
-<body>
+<body style="margin:0;padding:0;font-family:'Segoe UI',sans-serif">
 
-<footer style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
-               color: white; 
-               padding: 50px 40px 25px;">
+<footer style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);
+               color:#fff;padding:60px 40px 30px;position:relative;overflow:hidden">
     
-    <div style="display: grid; 
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-                gap: 40px; 
-                margin-bottom: 35px;">
+    <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;
+                background:radial-gradient(circle,rgba(11,115,168,0.1) 0%,transparent 70%);
+                border-radius:50%"></div>
+    
+    <div style="position:relative;z-index:1">
         
-        <div>
-            <h3 style="color: #0b73a8; font-size: 19px; margin: 0 0 18px 0; font-weight: 600;">Portal de Parceiros</h3>
-            <p style="font-size: 14px; line-height: 1.7; opacity: 0.85; margin: 0;">
-                Plataforma segura para colaboração entre a Planeje TI e seus parceiros estratégicos.
+        <div style="text-align:center;margin-bottom:50px">
+            <img src="https://planejeti.com.br/wp-content/uploads/2022/07/Agrupar-1.png" 
+                 alt="Planeje TI" 
+                 style="height:65px;filter:brightness(0) invert(1);margin-bottom:20px">
+            <p style="color:rgba(255,255,255,0.7);font-size:15px;margin:0">
+                Portal de Parceiros - Tecnologia que Conecta
             </p>
         </div>
         
-        <div>
-            <h3 style="color: #0b73a8; font-size: 19px; margin: 0 0 18px 0; font-weight: 600;">Links Úteis</h3>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="/sites/PortalParceiros" 
-                   style="color: white; text-decoration: none; opacity: 0.85; font-size: 14px; transition: opacity 0.2s;"
-                   onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-                    🏠 Página Inicial
-                </a>
-                <a href="/sites/PortalParceiros/SitePages/MinhasSolicitacoes.aspx" 
-                   style="color: white; text-decoration: none; opacity: 0.85; font-size: 14px; transition: opacity 0.2s;"
-                   onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-                    📋 Minhas Solicitações
-                </a>
-                <a href="/sites/PortalParceiros/SitePages/Suporte.aspx" 
-                   style="color: white; text-decoration: none; opacity: 0.85; font-size: 14px; transition: opacity 0.2s;"
-                   onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-                    💬 Suporte
-                </a>
-                <a href="https://planejeti.com.br" target="_blank"
-                   style="color: white; text-decoration: none; opacity: 0.85; font-size: 14px; transition: opacity 0.2s;"
-                   onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-                    🌐 Site Planeje TI
-                </a>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+                    gap:50px;margin-bottom:40px">
+            
+            <div>
+                <h3 style="color:#0b73a8;font-size:20px;margin:0 0 20px;font-weight:700">Links Rápidos</h3>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                    <a href="/sites/PortalParceiros" 
+                       style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:15px;
+                              transition:all 0.2s"
+                       onmouseover="this.style.color='#fff';this.style.paddingLeft='8px'"
+                       onmouseout="this.style.color='rgba(255,255,255,0.8)';this.style.paddingLeft='0'">
+                        → Página Inicial
+                    </a>
+                    <a href="/sites/PortalParceiros/SitePages/MinhasSolicitacoes.aspx" 
+                       style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:15px;
+                              transition:all 0.2s"
+                       onmouseover="this.style.color='#fff';this.style.paddingLeft='8px'"
+                       onmouseout="this.style.color='rgba(255,255,255,0.8)';this.style.paddingLeft='0'">
+                        → Minhas Solicitações
+                    </a>
+                    <a href="/sites/PortalParceiros/SitePages/Suporte.aspx" 
+                       style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:15px;
+                              transition:all 0.2s"
+                       onmouseover="this.style.color='#fff';this.style.paddingLeft='8px'"
+                       onmouseout="this.style.color='rgba(255,255,255,0.8)';this.style.paddingLeft='0'">
+                        → Suporte
+                    </a>
+                    <a href="https://planejeti.com.br" target="_blank"
+                       style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:15px;
+                              transition:all 0.2s"
+                       onmouseover="this.style.color='#fff';this.style.paddingLeft='8px'"
+                       onmouseout="this.style.color='rgba(255,255,255,0.8)';this.style.paddingLeft='0'">
+                        → Site Planeje TI
+                    </a>
+                </div>
             </div>
+            
+            <div>
+                <h3 style="color:#0b73a8;font-size:20px;margin:0 0 20px;font-weight:700">Contato</h3>
+                <div style="font-size:15px;line-height:2;color:rgba(255,255,255,0.8)">
+                    <div style="margin-bottom:10px">
+                        <strong style="color:#fff">Email:</strong><br>
+                        <a href="mailto:suporte@planejeti.com.br" 
+                           style="color:rgba(255,255,255,0.8);text-decoration:none"
+                           onmouseover="this.style.color='#0b73a8'"
+                           onmouseout="this.style.color='rgba(255,255,255,0.8)'">
+                            suporte@planejeti.com.br
+                        </a>
+                    </div>
+                    <div style="margin-bottom:10px">
+                        <strong style="color:#fff">Telefone:</strong><br>
+                        (41) 98743-7615
+                    </div>
+                    <div>
+                        <strong style="color:#fff">Horário:</strong><br>
+                        Seg-Sex: 8h30 - 17h30
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="color:#0b73a8;font-size:20px;margin:0 0 20px;font-weight:700">Redes Sociais</h3>
+                <div style="display:flex;gap:15px">
+                    <a href="#" 
+                       style="width:45px;height:45px;background:rgba(11,115,168,0.3);
+                              border-radius:50%;display:flex;align-items:center;
+                              justify-content:center;color:#fff;text-decoration:none;
+                              font-size:20px;transition:all 0.3s"
+                       onmouseover="this.style.background='#0b73a8';this.style.transform='translateY(-3px)'"
+                       onmouseout="this.style.background='rgba(11,115,168,0.3)';this.style.transform='translateY(0)'">
+                        f
+                    </a>
+                    <a href="#" 
+                       style="width:45px;height:45px;background:rgba(11,115,168,0.3);
+                              border-radius:50%;display:flex;align-items:center;
+                              justify-content:center;color:#fff;text-decoration:none;
+                              font-size:20px;transition:all 0.3s"
+                       onmouseover="this.style.background='#0b73a8';this.style.transform='translateY(-3px)'"
+                       onmouseout="this.style.background='rgba(11,115,168,0.3)';this.style.transform='translateY(0)'">
+                        in
+                    </a>
+                    <a href="#" 
+                       style="width:45px;height:45px;background:rgba(11,115,168,0.3);
+                              border-radius:50%;display:flex;align-items:center;
+                              justify-content:center;color:#fff;text-decoration:none;
+                              font-size:20px;transition:all 0.3s"
+                       onmouseover="this.style.background='#0b73a8';this.style.transform='translateY(-3px)'"
+                       onmouseout="this.style.background='rgba(11,115,168,0.3)';this.style.transform='translateY(0)'">
+                        IG
+                    </a>
+                </div>
+            </div>
+            
         </div>
         
-        <div>
-            <h3 style="color: #0b73a8; font-size: 19px; margin: 0 0 18px 0; font-weight: 600;">Contato</h3>
-            <div style="font-size: 14px; line-height: 1.9; opacity: 0.85;">
-                📧 suporte@planejeti.com.br<br>
-                📞 (41) 98743-7615<br>
-                🕒 Seg-Sex: 8h30 - 17h30
-            </div>
+        <div style="text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);
+                    font-size:14px;color:rgba(255,255,255,0.6)">
+            © 2025 Planeje TI - Todos os direitos reservados | Desenvolvido por Saltech Consultoria
         </div>
         
-    </div>
-    
-    <div style="text-align: center; 
-                padding-top: 25px; 
-                border-top: 1px solid rgba(255,255,255,0.1); 
-                font-size: 13px; 
-                opacity: 0.7;">
-        © 2025 Planeje TI - Todos os direitos reservados
     </div>
     
 </footer>

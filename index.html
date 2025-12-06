@@ -3,34 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Templates Portal Parceiros - Planeje TI</title>
+    <title>Portal Parceiros - Planeje TI</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 40px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        header { background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); color: white; padding: 60px 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 40px rgba(11,115,168,0.3); margin-bottom: 50px; }
-        header h1 { font-size: 48px; margin-bottom: 10px; font-weight: 700; }
-        header p { font-size: 20px; opacity: 0.95; font-weight: 300; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
-        .card-header { background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); color: white; padding: 30px; text-align: center; }
-        .card-icon { font-size: 64px; margin-bottom: 15px; }
-        .card-header h2 { font-size: 24px; margin-bottom: 8px; font-weight: 600; }
-        .card-header p { opacity: 0.9; font-size: 14px; }
-        .card-body { padding: 25px; }
-        .card-body p { color: #666; line-height: 1.6; margin-bottom: 20px; font-size: 15px; }
-        .btn-group { display: flex; gap: 10px; }
-        .btn { flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; transition: all 0.3s; font-size: 14px; }
-        .btn-primary { background: #0b73a8; color: white; }
-        .btn-primary:hover { background: #064a6d; }
-        .btn-secondary { background: #f8f9fa; color: #0b73a8; border: 2px solid #0b73a8; }
-        .btn-secondary:hover { background: #0b73a8; color: white; }
-        .info { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-top: 40px; }
-        .info h2 { color: #0b73a8; font-size: 32px; margin-bottom: 20px; }
-        .info p, .info li { color: #666; line-height: 1.8; margin-bottom: 10px; }
-        .info code { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; color: #e74c3c; font-family: monospace; }
-        footer { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 30px; border-radius: 16px; text-align: center; margin-top: 40px; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);padding:40px 20px}
+        .container{max-width:1200px;margin:0 auto}
+        header{background:linear-gradient(135deg,#0b73a8 0%,#064a6d 100%);color:#fff;padding:60px 40px;border-radius:20px;text-align:center;box-shadow:0 10px 40px rgba(11,115,168,0.3);margin-bottom:50px;position:relative;overflow:hidden}
+        header::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);border-radius:50%}
+        header img{height:80px;filter:brightness(0) invert(1);margin-bottom:20px}
+        header h1{font-size:48px;margin-bottom:10px;font-weight:700;position:relative;z-index:1}
+        header p{font-size:20px;opacity:0.95;font-weight:300;position:relative;z-index:1}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:30px;margin-bottom:40px}
+        .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
+        .card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(11,115,168,0.2)}
+        .card-h{background:linear-gradient(135deg,#0b73a8 0%,#064a6d 100%);color:#fff;padding:35px;text-align:center}
+        .card-icon{font-size:70px;margin-bottom:15px}
+        .card-h h2{font-size:24px;margin-bottom:8px;font-weight:700}
+        .card-h p{opacity:0.9;font-size:14px}
+        .card-b{padding:28px}
+        .card-b p{color:#666;line-height:1.6;margin-bottom:22px;font-size:15px}
+        .btns{display:flex;gap:12px}
+        .btn{flex:1;padding:14px;border-radius:10px;text-decoration:none;text-align:center;font-weight:700;transition:all 0.3s;font-size:15px}
+        .btn-p{background:#0b73a8;color:#fff}
+        .btn-p:hover{background:#064a6d;transform:scale(1.05)}
+        .btn-s{background:#f8f9fa;color:#0b73a8;border:2px solid #0b73a8}
+        .btn-s:hover{background:#0b73a8;color:#fff}
+        .info{background:#fff;padding:45px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1);margin-bottom:40px}
+        .info h2{color:#0b73a8;font-size:34px;margin-bottom:25px;font-weight:700}
+        .info p{color:#666;line-height:1.8;margin-bottom:15px;font-size:16px}
+        .info code{background:#f4f4f4;padding:4px 8px;border-radius:5px;color:#e74c3c;font-family:monospace;font-size:14px}
+        footer{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:40px;border-radius:16px;text-align:center}
+        footer img{height:60px;filter:brightness(0) invert(1);margin-bottom:15px}
+        footer p{opacity:0.8;font-size:14px}
     </style>
 </head>
 <body>
@@ -38,83 +42,84 @@
 <div class="container">
     
     <header>
+        <img src="https://planejeti.com.br/wp-content/uploads/2022/07/Agrupar-1.png" alt="Planeje TI">
         <h1>Portal de Parceiros</h1>
-        <p>Templates HTML Customizados - Planeje TI</p>
+        <p>Templates HTML Premium para SharePoint</p>
     </header>
     
     <div class="grid">
         
         <div class="card">
-            <div class="card-header">
+            <div class="card-h">
                 <div class="card-icon">📱</div>
                 <h2>Banner Hero</h2>
-                <p>Banner de Boas-Vindas</p>
+                <p>Banner Principal</p>
             </div>
-            <div class="card-body">
-                <p>Banner com gradiente azul Planeje TI, texto impactante e botão CTA.</p>
-                <div class="btn-group">
-                    <a href="01-banner-hero.html" class="btn btn-primary" target="_blank">Visualizar</a>
-                    <a href="01-banner-hero.html" class="btn btn-secondary" download>Baixar</a>
+            <div class="card-b">
+                <p>Banner com logo Planeje TI, gradiente azul e CTA animado.</p>
+                <div class="btns">
+                    <a href="https://cmbsilva.github.io/Planejeti--projeto-sharepoint/01-banner-hero.html" class="btn btn-p" target="_blank">Visualizar</a>
+                    <a href="01-banner-hero.html" class="btn btn-s" download>Baixar</a>
                 </div>
             </div>
         </div>
         
         <div class="card">
-            <div class="card-header">
+            <div class="card-h">
                 <div class="card-icon">🎴</div>
                 <h2>Cards de Acesso</h2>
                 <p>Navegação Rápida</p>
             </div>
-            <div class="card-body">
-                <p>Grid responsivo com 4 cards interativos para acesso rápido.</p>
-                <div class="btn-group">
-                    <a href="02-cards-acesso.html" class="btn btn-primary" target="_blank">Visualizar</a>
-                    <a href="02-cards-acesso.html" class="btn btn-secondary" download>Baixar</a>
+            <div class="card-b">
+                <p>Grid responsivo com cards premium e efeitos hover.</p>
+                <div class="btns">
+                    <a href="https://cmbsilva.github.io/Planejeti--projeto-sharepoint/02-cards-acesso.html" class="btn btn-p" target="_blank">Visualizar</a>
+                    <a href="02-cards-acesso.html" class="btn btn-s" download>Baixar</a>
                 </div>
             </div>
         </div>
         
         <div class="card">
-            <div class="card-header">
+            <div class="card-h">
                 <div class="card-icon">⚠️</div>
                 <h2>Avisos</h2>
-                <p>Caixas de Alerta</p>
+                <p>Alertas Coloridos</p>
             </div>
-            <div class="card-body">
-                <p>4 tipos de avisos: Info, Sucesso, Atenção e Urgente.</p>
-                <div class="btn-group">
-                    <a href="03-avisos.html" class="btn btn-primary" target="_blank">Visualizar</a>
-                    <a href="03-avisos.html" class="btn btn-secondary" download>Baixar</a>
+            <div class="card-b">
+                <p>4 tipos de avisos com animações e cores distintas.</p>
+                <div class="btns">
+                    <a href="https://cmbsilva.github.io/Planejeti--projeto-sharepoint/03-avisos.html" class="btn btn-p" target="_blank">Visualizar</a>
+                    <a href="03-avisos.html" class="btn btn-s" download>Baixar</a>
                 </div>
             </div>
         </div>
         
         <div class="card">
-            <div class="card-header">
+            <div class="card-h">
                 <div class="card-icon">❓</div>
                 <h2>FAQ</h2>
                 <p>Perguntas Frequentes</p>
             </div>
-            <div class="card-body">
-                <p>FAQ interativo com accordion (abre/fecha) moderno.</p>
-                <div class="btn-group">
-                    <a href="04-faq.html" class="btn btn-primary" target="_blank">Visualizar</a>
-                    <a href="04-faq.html" class="btn btn-secondary" download>Baixar</a>
+            <div class="card-b">
+                <p>Accordion moderno com animações suaves.</p>
+                <div class="btns">
+                    <a href="https://cmbsilva.github.io/Planejeti--projeto-sharepoint/04-faq.html" class="btn btn-p" target="_blank">Visualizar</a>
+                    <a href="04-faq.html" class="btn btn-s" download>Baixar</a>
                 </div>
             </div>
         </div>
         
         <div class="card">
-            <div class="card-header">
+            <div class="card-h">
                 <div class="card-icon">🔻</div>
                 <h2>Rodapé</h2>
-                <p>Footer Customizado</p>
+                <p>Footer Premium</p>
             </div>
-            <div class="card-body">
-                <p>Footer escuro com 3 colunas e gradiente Planeje TI.</p>
-                <div class="btn-group">
-                    <a href="05-rodape.html" class="btn btn-primary" target="_blank">Visualizar</a>
-                    <a href="05-rodape.html" class="btn btn-secondary" download>Baixar</a>
+            <div class="card-b">
+                <p>Footer completo com logo e redes sociais.</p>
+                <div class="btns">
+                    <a href="https://cmbsilva.github.io/Planejeti--projeto-sharepoint/05-rodape.html" class="btn btn-p" target="_blank">Visualizar</a>
+                    <a href="05-rodape.html" class="btn btn-s" download>Baixar</a>
                 </div>
             </div>
         </div>
@@ -122,15 +127,18 @@
     </div>
     
     <div class="info">
-        <h2>Como Usar</h2>
-        <p><strong>1.</strong> Habilite GitHub Pages: Settings → Pages → main → Save</p>
-        <p><strong>2.</strong> Acesse: <code>https://SEU-USUARIO.github.io/portal-parceiros-planejeti/</code></p>
-        <p><strong>3.</strong> No SharePoint: Adicione Web Part "Embed" → Cole o link do template</p>
+        <h2>🚀 Como Usar no SharePoint</h2>
+        <p><strong>1.</strong> Edite a página SharePoint</p>
+        <p><strong>2.</strong> Adicione Web Part <strong>"Embed"</strong></p>
+        <p><strong>3.</strong> Cole o link:</p>
+        <p><code>https://cmbsilva.github.io/Planejeti--projeto-sharepoint/01-banner-hero.html</code></p>
+        <p><strong>4.</strong> Ajuste altura e publique!</p>
     </div>
     
     <footer>
-        <p><strong>Planeje TI</strong> - Portal de Parceiros</p>
-        <p style="margin-top: 10px; opacity: 0.7;">© 2025 - Desenvolvido por Saltech Consultoria</p>
+        <img src="https://planejeti.com.br/wp-content/uploads/2022/07/Agrupar-1.png" alt="Planeje TI">
+        <p>Portal de Parceiros - Tecnologia que Conecta</p>
+        <p style="margin-top:15px;opacity:0.6">© 2025 Planeje TI | Desenvolvido por Saltech Consultoria</p>
     </footer>
     
 </div>

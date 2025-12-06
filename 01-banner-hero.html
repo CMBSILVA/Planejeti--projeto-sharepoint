@@ -4,31 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banner Hero</title>
-    <style>
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    </style>
 </head>
-<body>
+<body style="margin:0;padding:0;font-family:'Segoe UI',sans-serif;">
 
-<div style="background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); 
-            padding: 80px 40px; 
-            color: white; 
-            text-align: center; 
+<div style="background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%);
+            padding: 0;
             position: relative;
-            overflow: hidden;">
+            overflow: hidden;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;">
     
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1; background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptMCAyMGMtNC40MTggMC04LTMuNTgyLTgtOHMzLjU4Mi04IDgtOCA4IDMuNTgyIDggOC0zLjU4MiA4LTggOHoiIGZpbGw9IiNGRkYiLz48L2c+PC9zdmc+'); background-size: 60px 60px;"></div>
+    <!-- Pattern overlay -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+                background-image: 
+                    repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, transparent 1px, transparent 40px, rgba(255,255,255,0.03) 41px),
+                    repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, transparent 1px, transparent 40px, rgba(255,255,255,0.03) 41px);
+                pointer-events: none;">
+    </div>
     
-    <div style="position: relative; z-index: 1;">
-        <h1 style="font-size: 48px; 
+    <!-- Gradient circles -->
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; 
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                border-radius: 50%;">
+    </div>
+    <div style="position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; 
+                background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+                border-radius: 50%;">
+    </div>
+    
+    <!-- Content -->
+    <div style="position: relative; z-index: 2; text-align: center; padding: 60px 40px; max-width: 900px;">
+        
+        <!-- Logo -->
+        <div style="margin-bottom: 40px;">
+            <img src="https://planejeti.com.br/wp-content/uploads/2022/07/Agrupar-1.png" 
+                 alt="Planeje TI" 
+                 style="height: 70px; filter: brightness(0) invert(1);">
+        </div>
+        
+        <h1 style="font-size: 52px; 
                    font-weight: 700; 
                    margin: 0 0 20px 0; 
-                   letter-spacing: -1px;">
+                   color: white;
+                   letter-spacing: -1.5px;
+                   line-height: 1.2;">
             Bem-vindo ao Portal de Parceiros
         </h1>
         
-        <p style="font-size: 22px; 
-                  margin: 0 0 35px 0; 
+        <p style="font-size: 24px; 
+                  margin: 0 0 45px 0; 
+                  color: white;
                   font-weight: 300; 
                   opacity: 0.95;">
             Seu espaço seguro para colaboração com a Planeje TI
@@ -38,16 +65,20 @@
            style="display: inline-block; 
                   background: white; 
                   color: #0b73a8; 
-                  padding: 16px 45px; 
+                  padding: 18px 55px; 
                   border-radius: 50px; 
                   text-decoration: none; 
-                  font-weight: 600; 
+                  font-weight: 700; 
                   font-size: 18px; 
-                  transition: all 0.3s ease; 
-                  box-shadow: 0 8px 25px rgba(0,0,0,0.2);"
-           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.25)';"
-           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.2)';">
-            🚀 Começar
+                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+                  text-transform: uppercase;
+                  letter-spacing: 1px;"
+           onmouseover="this.style.transform='translateY(-4px) scale(1.05)'; 
+                        this.style.boxShadow='0 15px 50px rgba(0,0,0,0.35)';"
+           onmouseout="this.style.transform='translateY(0) scale(1)'; 
+                       this.style.boxShadow='0 10px 40px rgba(0,0,0,0.25)';">
+            Começar Agora →
         </a>
     </div>
     
