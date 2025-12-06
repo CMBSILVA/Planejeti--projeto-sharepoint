@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
+        .faq { margin-bottom: 12px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .q { background: white; padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
+        .q:hover { background: #f8f9fa; }
+        .q h3 { color: #0b73a8; margin: 0; font-size: 17px; font-weight: 600; }
+        .icon { color: #0b73a8; font-size: 24px; font-weight: bold; transition: transform 0.2s; }
+        .a { max-height: 0; overflow: hidden; transition: max-height 0.3s; background: #f8f9fa; }
+        .a-content { padding: 0 25px 22px; color: #555; line-height: 1.7; font-size: 15px; }
+    </style>
+    <script>
+        function toggle(el) {
+            const a = el.nextElementSibling;
+            const icon = el.querySelector('.icon');
+            const allA = document.querySelectorAll('.a');
+            const allIcons = document.querySelectorAll('.icon');
+            
+            allA.forEach(item => { if(item !== a) item.style.maxHeight = null; });
+            allIcons.forEach(item => { if(item !== icon) item.style.transform = 'rotate(0deg)'; });
+            
+            if(a.style.maxHeight) {
+                a.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                a.style.maxHeight = a.scrollHeight + 'px';
+                icon.style.transform = 'rotate(45deg)';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 40px;">
+    <h2 style="color: #0b73a8; font-size: 36px; margin: 0 0 12px 0; font-weight: 700;">Perguntas Frequentes</h2>
+    <p style="color: #666; font-size: 16px; margin: 0;">Encontre respostas rápidas para as dúvidas mais comuns</p>
+</div>
+
+<div class="faq">
+    <div class="q" onclick="toggle(this)">
+        <h3>Como faço para redefinir minha senha?</h3>
+        <span class="icon">+</span>
+    </div>
+    <div class="a">
+        <div class="a-content">
+            Na página de login, clique em "Esqueci minha senha". Digite seu email e você receberá um link para criar nova senha.
+        </div>
+    </div>
+</div>
+
+<div class="faq">
+    <div class="q" onclick="toggle(this)">
+        <h3>Qual o prazo para resposta das solicitações?</h3>
+        <span class="icon">+</span>
+    </div>
+    <div class="a">
+        <div class="a-content">
+            <strong>Alta:</strong> 4h úteis | <strong>Média:</strong> 24h úteis | <strong>Baixa:</strong> 72h úteis
+        </div>
+    </div>
+</div>
+
+<div class="faq">
+    <div class="q" onclick="toggle(this)">
+        <h3>Posso enviar múltiplos documentos de uma vez?</h3>
+        <span class="icon">+</span>
+    </div>
+    <div class="a">
+        <div class="a-content">
+            Sim! Envie até 10 arquivos simultaneamente, máximo 25MB cada. Formatos: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG.
+        </div>
+    </div>
+</div>
+
+<div class="faq">
+    <div class="q" onclick="toggle(this)">
+        <h3>Quem tem acesso aos meus documentos?</h3>
+        <span class="icon">+</span>
+    </div>
+    <div class="a">
+        <div class="a-content">
+            Apenas você e membros autorizados da sua empresa. Equipe Planeje TI acessa somente quando necessário para atender solicitações. Tudo auditado conforme LGPD.
+        </div>
+    </div>
+</div>
+
+<div class="faq">
+    <div class="q" onclick="toggle(this)">
+        <h3>Posso adicionar outros usuários da minha empresa?</h3>
+        <span class="icon">+</span>
+    </div>
+    <div class="a">
+        <div class="a-content">
+            Sim! Administradores podem adicionar usuários em Configurações → Gerenciar Usuários, definindo permissões específicas.
+        </div>
+    </div>
+</div>
+
+<div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+            padding: 28px; 
+            border-radius: 12px; 
+            text-align: center; 
+            margin-top: 35px; 
+            box-shadow: 0 4px 15px rgba(11,115,168,0.1);">
+    <p style="color: #0b73a8; margin: 0 0 18px 0; font-size: 18px; font-weight: 600;">Ainda tem dúvidas?</p>
+    <a href="/sites/PortalParceiros/SitePages/Suporte.aspx" 
+       style="display: inline-block; 
+              background: #0b73a8; 
+              color: white; 
+              padding: 14px 35px; 
+              border-radius: 50px; 
+              text-decoration: none; 
+              font-weight: 600; 
+              transition: all 0.3s;"
+       onmouseover="this.style.background='#064a6d';"
+       onmouseout="this.style.background='#0b73a8';">
+        Falar com Suporte
+    </a>
+</div>
+
+</body>
+</html>

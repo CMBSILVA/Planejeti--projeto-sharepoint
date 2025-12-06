@@ -3,375 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Parceiros - Planeje TI</title>
+    <title>Templates Portal Parceiros - Planeje TI</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Hero Banner */
-        .hero {
-            background: linear-gradient(135deg, #0B73A8 0%, #064A6B 100%);
-            padding: 80px 40px;
-            border-radius: 12px;
-            color: white;
-            box-shadow: 0 8px 24px rgba(11, 115, 168, 0.2);
-            margin-bottom: 50px;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 22px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-        
-        .hero-btn {
-            display: inline-block;
-            background: white;
-            color: #0B73A8;
-            padding: 18px 50px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .hero-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-        
-        /* Cards de Ações */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-left: 4px solid #0B73A8;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-        
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #0B73A8 0%, #1683b5 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            font-size: 36px;
-        }
-        
-        .card.green {
-            border-left-color: #28A745;
-        }
-        
-        .card.green .card-icon {
-            background: linear-gradient(135deg, #28A745 0%, #20c997 100%);
-        }
-        
-        .card.orange {
-            border-left-color: #FF9800;
-        }
-        
-        .card.orange .card-icon {
-            background: linear-gradient(135deg, #FF9800 0%, #ffc107 100%);
-        }
-        
-        .card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .card p {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 16px;
-        }
-        
-        .card-link {
-            color: #0B73A8;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .card.green .card-link {
-            color: #28A745;
-        }
-        
-        .card.orange .card-link {
-            color: #FF9800;
-        }
-        
-        .card-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Seção Como Funciona */
-        .how-it-works {
-            background: #F5F5F5;
-            padding: 70px 40px;
-            border-radius: 12px;
-            margin: 60px 0;
-        }
-        
-        .how-it-works h2 {
-            font-size: 36px;
-            color: #333;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            width: 90px;
-            height: 90px;
-            background: #0B73A8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px auto;
-            color: white;
-            font-size: 42px;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(11, 115, 168, 0.3);
-        }
-        
-        .step h3 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 15px;
-        }
-        
-        .step p {
-            color: #666;
-            font-size: 16px;
-        }
-        
-        /* Banner Informativo */
-        .info-banner {
-            background: linear-gradient(135deg, #1683b5 0%, #0B73A8 100%);
-            padding: 50px 40px;
-            border-radius: 12px;
-            margin: 50px 0;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            color: white;
-        }
-        
-        .info-banner-icon {
-            font-size: 80px;
-            min-width: 100px;
-        }
-        
-        .info-banner-content h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        
-        .info-banner-content p {
-            font-size: 18px;
-            opacity: 0.95;
-        }
-        
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #064A6B 0%, #0B73A8 100%);
-            color: white;
-            padding: 60px 40px;
-            border-radius: 12px;
-            margin-top: 80px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-        }
-        
-        .footer h3 {
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-        
-        .footer p {
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-        
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .info-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); color: white; padding: 60px 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 40px rgba(11,115,168,0.3); margin-bottom: 50px; }
+        header h1 { font-size: 48px; margin-bottom: 10px; font-weight: 700; }
+        header p { font-size: 20px; opacity: 0.95; font-weight: 300; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+        .card-header { background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%); color: white; padding: 30px; text-align: center; }
+        .card-icon { font-size: 64px; margin-bottom: 15px; }
+        .card-header h2 { font-size: 24px; margin-bottom: 8px; font-weight: 600; }
+        .card-header p { opacity: 0.9; font-size: 14px; }
+        .card-body { padding: 25px; }
+        .card-body p { color: #666; line-height: 1.6; margin-bottom: 20px; font-size: 15px; }
+        .btn-group { display: flex; gap: 10px; }
+        .btn { flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; transition: all 0.3s; font-size: 14px; }
+        .btn-primary { background: #0b73a8; color: white; }
+        .btn-primary:hover { background: #064a6d; }
+        .btn-secondary { background: #f8f9fa; color: #0b73a8; border: 2px solid #0b73a8; }
+        .btn-secondary:hover { background: #0b73a8; color: white; }
+        .info { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-top: 40px; }
+        .info h2 { color: #0b73a8; font-size: 32px; margin-bottom: 20px; }
+        .info p, .info li { color: #666; line-height: 1.8; margin-bottom: 10px; }
+        .info code { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; color: #e74c3c; font-family: monospace; }
+        footer { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 30px; border-radius: 16px; text-align: center; margin-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="container">
+
+<div class="container">
+    
+    <header>
+        <h1>Portal de Parceiros</h1>
+        <p>Templates HTML Customizados - Planeje TI</p>
+    </header>
+    
+    <div class="grid">
         
-        <!-- Hero Banner -->
-        <div class="hero">
-            <h1>Bem-vindo ao Portal de Parceiros</h1>
-            <p>Planeje TI - Planejando e executando inovações com Tecnologia</p>
-            <a href="#" class="hero-btn">Acessar Minha Área →</a>
-        </div>
-        
-        <!-- Cards de Ações Rápidas -->
-        <div class="cards-grid">
-            <!-- Card 1: Meus Documentos -->
-            <div class="card">
-                <div class="card-icon">📁</div>
-                <h3>Meus Documentos</h3>
-                <p>Acesse e gerencie seus documentos e arquivos compartilhados de forma segura.</p>
-                <a href="#" class="card-link">Acessar →</a>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📱</div>
+                <h2>Banner Hero</h2>
+                <p>Banner de Boas-Vindas</p>
             </div>
-            
-            <!-- Card 2: Enviar Solicitação -->
-            <div class="card green">
-                <div class="card-icon">📝</div>
-                <h3>Enviar Solicitação</h3>
-                <p>Envie suas dúvidas, solicitações e demandas diretamente para nossa equipe.</p>
-                <a href="#" class="card-link">Enviar →</a>
-            </div>
-            
-            <!-- Card 3: Minhas Solicitações -->
-            <div class="card orange">
-                <div class="card-icon">📋</div>
-                <h3>Minhas Solicitações</h3>
-                <p>Acompanhe o status e histórico de todas as suas solicitações abertas.</p>
-                <a href="#" class="card-link">Acompanhar →</a>
-            </div>
-        </div>
-        
-        <!-- Banner Informativo -->
-        <div class="info-banner">
-            <div class="info-banner-icon">🔒</div>
-            <div class="info-banner-content">
-                <h3>Segurança e Privacidade</h3>
-                <p>Seus documentos estão protegidos com criptografia de ponta a ponta e controle de acesso rigoroso. Apenas você e a equipe autorizada da Planeje TI têm acesso às suas informações.</p>
-            </div>
-        </div>
-        
-        <!-- Como Funciona -->
-        <div class="how-it-works">
-            <h2>Como Utilizar o Portal</h2>
-            <div class="steps">
-                <!-- Passo 1 -->
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Faça Login</h3>
-                    <p>Use seu e-mail cadastrado para acessar o portal de forma segura</p>
-                </div>
-                
-                <!-- Passo 2 -->
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Acesse Sua Área</h3>
-                    <p>Navegue pela sua área exclusiva de documentos e informações</p>
-                </div>
-                
-                <!-- Passo 3 -->
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Envie Solicitações</h3>
-                    <p>Use o formulário para enviar suas demandas e acompanhar respostas</p>
+            <div class="card-body">
+                <p>Banner com gradiente azul Planeje TI, texto impactante e botão CTA.</p>
+                <div class="btn-group">
+                    <a href="01-banner-hero.html" class="btn btn-primary" target="_blank">Visualizar</a>
+                    <a href="01-banner-hero.html" class="btn btn-secondary" download>Baixar</a>
                 </div>
             </div>
         </div>
         
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-grid">
-                <!-- Coluna 1: Sobre -->
-                <div>
-                    <h3>Sobre a Planeje TI</h3>
-                    <p>Soluções tecnológicas inovadoras para infraestrutura, data centers, redes Wi-Fi e cidades inteligentes. Transformamos tecnologia em resultados.</p>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎴</div>
+                <h2>Cards de Acesso</h2>
+                <p>Navegação Rápida</p>
+            </div>
+            <div class="card-body">
+                <p>Grid responsivo com 4 cards interativos para acesso rápido.</p>
+                <div class="btn-group">
+                    <a href="02-cards-acesso.html" class="btn btn-primary" target="_blank">Visualizar</a>
+                    <a href="02-cards-acesso.html" class="btn btn-secondary" download>Baixar</a>
                 </div>
-                
-                <!-- Coluna 2: Suporte -->
-                <div>
-                    <h3>Suporte</h3>
-                    <p>📧 contato@planejeti.com.br<br>
-                       📞 (41) 98843-7615<br>
-                       💬 WhatsApp disponível</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⚠️</div>
+                <h2>Avisos</h2>
+                <p>Caixas de Alerta</p>
+            </div>
+            <div class="card-body">
+                <p>4 tipos de avisos: Info, Sucesso, Atenção e Urgente.</p>
+                <div class="btn-group">
+                    <a href="03-avisos.html" class="btn btn-primary" target="_blank">Visualizar</a>
+                    <a href="03-avisos.html" class="btn btn-secondary" download>Baixar</a>
                 </div>
-                
-                <!-- Coluna 3: Horário -->
-                <div>
-                    <h3>Horário de Atendimento</h3>
-                    <p>Segunda a Sexta<br>
-                       8h30 às 17h30<br>
-                       <br>
-                       Suporte emergencial<br>
-                       24/7 para parceiros premium</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">❓</div>
+                <h2>FAQ</h2>
+                <p>Perguntas Frequentes</p>
+            </div>
+            <div class="card-body">
+                <p>FAQ interativo com accordion (abre/fecha) moderno.</p>
+                <div class="btn-group">
+                    <a href="04-faq.html" class="btn btn-primary" target="_blank">Visualizar</a>
+                    <a href="04-faq.html" class="btn btn-secondary" download>Baixar</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔻</div>
+                <h2>Rodapé</h2>
+                <p>Footer Customizado</p>
+            </div>
+            <div class="card-body">
+                <p>Footer escuro com 3 colunas e gradiente Planeje TI.</p>
+                <div class="btn-group">
+                    <a href="05-rodape.html" class="btn btn-primary" target="_blank">Visualizar</a>
+                    <a href="05-rodape.html" class="btn btn-secondary" download>Baixar</a>
                 </div>
             </div>
         </div>
         
     </div>
+    
+    <div class="info">
+        <h2>Como Usar</h2>
+        <p><strong>1.</strong> Habilite GitHub Pages: Settings → Pages → main → Save</p>
+        <p><strong>2.</strong> Acesse: <code>https://SEU-USUARIO.github.io/portal-parceiros-planejeti/</code></p>
+        <p><strong>3.</strong> No SharePoint: Adicione Web Part "Embed" → Cole o link do template</p>
+    </div>
+    
+    <footer>
+        <p><strong>Planeje TI</strong> - Portal de Parceiros</p>
+        <p style="margin-top: 10px; opacity: 0.7;">© 2025 - Desenvolvido por Saltech Consultoria</p>
+    </footer>
+    
+</div>
+
 </body>
 </html>
