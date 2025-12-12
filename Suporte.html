@@ -46,6 +46,25 @@
             margin: 0 auto;
         }
 
+        .header-logo {
+            height: 65px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .header h1 {
             font-size: 56px;
             font-weight: 800;
@@ -361,6 +380,10 @@
 
     <div class="header">
         <div class="header-content">
+            <img src="https://raw.githubusercontent.com/CMBSILVA/Planejeti--projeto-sharepoint/main/logo-planejeti.png" 
+                 alt="Planeje TI" 
+                 class="header-logo"
+                 onerror="this.style.display='none'">
             <h1>💬 Suporte ao Parceiro</h1>
             <p>Nossa equipe está sempre disponível para auxiliar você com qualquer dúvida ou necessidade. Entre em contato através dos canais abaixo.</p>
         </div>
@@ -374,7 +397,7 @@
                 <div class="contact-icon">📧</div>
                 <h3>E-mail</h3>
                 <p>Envie sua dúvida ou solicitação por e-mail</p>
-                <div class="contact-detail">parceiros@planejeti.com.br</div>
+                <div class="contact-detail">contato@planejeti.com.br</div>
                 <div class="availability">Resposta em até 24h úteis</div>
             </div>
 
@@ -382,16 +405,16 @@
                 <div class="contact-icon">📱</div>
                 <h3>Telefone</h3>
                 <p>Fale diretamente com nossa equipe</p>
-                <div class="contact-detail">(11) 4000-0000</div>
-                <div class="availability">Seg-Sex, 8h às 18h</div>
+                <div class="contact-detail">(41) 3534-5064</div>
+                <div class="availability">Seg-Sex, 8h30 às 17h30</div>
             </div>
 
             <div class="contact-card">
                 <div class="contact-icon">💬</div>
-                <h3>Chat Online</h3>
-                <p>Atendimento em tempo real via chat</p>
-                <div class="contact-detail">Iniciar Chat</div>
-                <div class="availability">Seg-Sex, 8h às 18h</div>
+                <h3>WhatsApp</h3>
+                <p>Atendimento rápido via WhatsApp</p>
+                <div class="contact-detail">(41) 98743-7615</div>
+                <div class="availability">Seg-Sex, 8h30 às 17h30</div>
             </div>
         </div>
 
@@ -441,7 +464,7 @@
                     <h3 style="color: #088395; font-size: 20px; margin-bottom: 15px;">🌐 Suporte de Emergência</h3>
                     <p style="color: #666; font-size: 17px; line-height: 1.8;">
                         Para problemas críticos fora do horário comercial, envie e-mail com o assunto <strong>"URGENTE"</strong> para:<br>
-                        <strong style="color: #088395;">emergencia@planejeti.com.br</strong>
+                        <strong style="color: #088395;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60050d051207050e03090120100c010e050a0514094e030f0d4e0212">[email&#160;protected]</a></strong>
                     </p>
                 </div>
             </div>
@@ -494,7 +517,7 @@
 
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Add smooth entrance animations
         const observerOptions = {
             threshold: 0.1,
@@ -510,18 +533,4 @@
                     
                     setTimeout(() => {
                         entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 100);
-                    
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.contact-card, .info-section, .tips-section').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
-
-</body>
-</html>
+                        entry.target.style.tra
