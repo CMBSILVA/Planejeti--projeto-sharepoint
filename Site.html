@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Parceiros - Planeje TI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f2f1;
+            color: #323130;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%);
+            color: white;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .logo {
+            height: 70px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 30px;
+        }
+
+        .header-left h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .header-left p {
+            font-size: 22px;
+            opacity: 0.95;
+            font-weight: 300;
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        .header-btn {
+            display: inline-block;
+            background: white;
+            color: #0b73a8;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-right {
+            flex: 0.8;
+        }
+
+        .header-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .welcome-section h2 {
+            color: #0b73a8;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            color: #605e5c;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* Quick Access Cards */
+        .section-title {
+            font-size: 32px;
+            color: #323130;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .access-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 4px solid #0b73a8;
+        }
+
+        .access-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(11, 115, 168, 0.2);
+        }
+
+        .card-icon-wrapper {
+            background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .card-icon {
+            font-size: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-content h3 {
+            font-size: 24px;
+            color: #323130;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .card-content p {
+            color: #605e5c;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .card-btn {
+            display: inline-block;
+            background: #0b73a8;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .card-btn:hover {
+            background: #064a6d;
+            transform: translateX(5px);
+        }
+
+        /* Alerts Section */
+        .alerts-section {
+            margin-bottom: 50px;
+        }
+
+        .alert {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 6px solid;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .alert-info {
+            border-left-color: #0078d4;
+            background: linear-gradient(90deg, rgba(0,120,212,0.05) 0%, white 100%);
+        }
+
+        .alert-success {
+            border-left-color: #107c10;
+            background: linear-gradient(90deg, rgba(16,124,16,0.05) 0%, white 100%);
+        }
+
+        .alert-warning {
+            border-left-color: #ff8c00;
+            background: linear-gradient(90deg, rgba(255,140,0,0.05) 0%, white 100%);
+        }
+
+        .alert-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .alert-content h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .alert-content p {
+            color: #605e5c;
+            margin: 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .faq-section h2 {
+            color: #0b73a8;
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #edebe9;
+            padding: 25px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 600;
+            color: #323130;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #0b73a8;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: #605e5c;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 15px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #0b73a8 0%, #064a6d 100%);
+            border-radius: 16px;
+            padding: 60px;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .contact-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .contact-item span {
+            font-size: 28px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 50px 40px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 60px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 25px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 60px 30px;
+            }
+
+            .header-left h1 {
+                font-size: 42px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .welcome-section,
+            .faq-section,
+            .contact-section {
+                padding: 30px;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="https://raw.githubusercontent.com/CMBSILVA/Planejeti--projeto-sharepoint/main/logo-planejeti.png" alt="Planeje TI" class="logo">
+                <h1>Portal de Parceiros</h1>
+                <p>Conectando empresas através de tecnologia segura e eficiente. Acesse documentos, envie solicitações e acompanhe suas demandas em um ambiente totalmente integrado.</p>
+                <a href="#acesso-rapido" class="header-btn">Começar Agora</a>
+            </div>
+            <div class="header-right">
+                <svg class="header-image" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="500" height="400" fill="rgba(255,255,255,0.1)" rx="20"/>
+                    <circle cx="250" cy="200" r="120" fill="rgba(255,255,255,0.2)"/>
+                    <rect x="150" y="100" width="200" height="200" fill="rgba(255,255,255,0.15)" rx="10"/>
+                    <path d="M 200 150 L 300 150 L 300 250 L 200 250 Z" fill="rgba(255,255,255,0.25)"/>
+                    <circle cx="250" cy="200" r="50" fill="rgba(255,255,255,0.3)"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section fade-in">
+            <h2>👋 Bem-vindo ao Portal de Parceiros</h2>
+            <p>Este portal foi desenvolvido para facilitar a colaboração entre a Planeje TI e seus parceiros estratégicos. Aqui você tem acesso a todas as ferramentas necessárias para gerenciar documentos, enviar solicitações e acompanhar o status de suas demandas.</p>
+            <p>Navegue pelas áreas abaixo para começar a utilizar os recursos disponíveis. Em caso de dúvidas, consulte nossa seção de Perguntas Frequentes ou entre em contato com nossa equipe de suporte.</p>
+        </section>
+
+        <!-- Quick Access Cards -->
+        <section id="acesso-rapido" class="fade-in">
+            <h2 class="section-title">🚀 Acesso Rápido</h2>
+            <div class="cards-grid">
+                
+                <div class="access-card">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">📄</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Meus Documentos</h3>
+                        <p>Acesse, envie e gerencie documentos compartilhados entre sua empresa e a Planeje TI de forma segura e organizada.</p>
+                        <a href="#" class="card-btn">Acessar Documentos</a>
+                    </div>
+                </div>
+
+                <div class="access-card">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">📝</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Nova Solicitação</h3>
+                        <p>Registre novas solicitações, demandas ou tickets para nossa equipe. Acompanhe o status em tempo real.</p>
+                        <a href="#" class="card-btn">Criar Solicitação</a>
+                    </div>
+                </div>
+
+                <div class="access-card">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">📊</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Minhas Solicitações</h3>
+                        <p>Visualize o histórico completo de suas solicitações anteriores e acompanhe o andamento das demandas abertas.</p>
+                        <a href="#" class="card-btn">Ver Solicitações</a>
+                    </div>
+                </div>
+
+                <div class="access-card">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">📋</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Contratos e SLAs</h3>
+                        <p>Consulte contratos vigentes, acordos de nível de serviço e termos de parceria entre as empresas.</p>
+                        <a href="#" class="card-btn">Ver Contratos</a>
+                    </div>
+                </div>
+
+                <div class="access-card">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">📚</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Base de Conhecimento</h3>
+                        <p>Acesse tutoriais, manuais e documentação técnica para aproveitar melhor os recursos disponíveis.</p>
+                        <a href="#" class="card-btn">Explorar Base</a>
+                    </div>
+                </div>
+
+                <div class="access-card">
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon">⚙️</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Configurações</h3>
+                        <p>Gerencie suas preferências, notificações e informações de contato cadastradas no portal.</p>
+                        <a href="#" class="card-btn">Configurar</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section class="alerts-section fade-in">
+            <h2 class="section-title">📢 Avisos Importantes</h2>
+            
+            <div class="alert alert-info">
+                <div class="alert-icon">ℹ️</div>
+                <div class="alert-content">
+                    <h4>Portal em Produção</h4>
+                    <p>O Portal de Parceiros está oficialmente em funcionamento. Todas as funcionalidades estão disponíveis para uso.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-success">
+                <div class="alert-icon">✅</div>
+                <div class="alert-content">
+                    <h4>Sistema de Notificações Ativo</h4>
+                    <p>Você receberá e-mails automáticos sempre que houver atualizações em suas solicitações ou novos documentos compartilhados.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <h4>Política de Segurança</h4>
+                    <p>Para manter a segurança dos dados, sessões inativas por mais de 30 minutos serão encerradas automaticamente. Lembre-se de salvar seu trabalho regularmente.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section fade-in">
+            <h2>❓ Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    Como faço para acessar meus documentos?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Para acessar seus documentos, clique no card "Meus Documentos" na área de acesso rápido. Você será direcionado para uma pasta exclusiva da sua empresa, onde poderá visualizar, fazer download e enviar novos arquivos. Todos os documentos são armazenados de forma segura e criptografada.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Como criar uma nova solicitação?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Clique em "Nova Solicitação" e preencha o formulário com os detalhes da sua demanda. Selecione o tipo de solicitação (suporte técnico, comercial, financeiro, etc.), descreva o problema ou necessidade e anexe arquivos se necessário. Nossa equipe receberá uma notificação imediata e retornará dentro do prazo do SLA.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Quanto tempo leva para receber resposta de uma solicitação?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    O tempo de resposta varia de acordo com o tipo e prioridade da solicitação. Solicitações urgentes são respondidas em até 4 horas úteis, solicitações normais em até 24 horas, e demandas de baixa prioridade em até 72 horas. Você pode acompanhar o status em tempo real na seção "Minhas Solicitações".
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Posso compartilhar o acesso ao portal com outras pessoas da minha empresa?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Sim! Para adicionar novos usuários da sua empresa ao portal, entre em contato com nossa equipe através do formulário de solicitação selecionando a categoria "Gerenciamento de Acessos". Informe nome completo, e-mail corporativo e cargo da pessoa. O processo de liberação leva até 24 horas úteis.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Os documentos compartilhados são seguros?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Absolutamente. Utilizamos a plataforma SharePoint Online da Microsoft com criptografia de ponta a ponta. Todos os arquivos são protegidos por autenticação multifator (MFA), controle de acesso baseado em identidade e backup diário. Apenas usuários autorizados da sua empresa podem acessar os documentos compartilhados. Nossa infraestrutura está em conformidade com LGPD e ISO 27001.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Preciso instalar algum software para usar o portal?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    Não é necessário instalar nenhum software. O portal funciona 100% via navegador web (Chrome, Firefox, Edge ou Safari). Para melhor experiência, recomendamos manter seu navegador atualizado. Você também pode acessar o portal através de dispositivos móveis (smartphones e tablets).
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section fade-in">
+            <h2>📞 Precisa de Ajuda?</h2>
+            <p>Nossa equipe de suporte está sempre disponível para auxiliá-lo. Entre em contato através dos canais abaixo:</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <div>
+                        <strong>E-mail</strong><br>
+                        parceiros@planejeti.com.br
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <div>
+                        <strong>Telefone</strong><br>
+                        (11) 4000-0000
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span>💬</span>
+                    <div>
+                        <strong>Chat</strong><br>
+                        Segunda a Sexta, 8h às 18h
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <img src="https://raw.githubusercontent.com/CMBSILVA/Planejeti--projeto-sharepoint/main/logo-planejeti.png" alt="Planeje TI" class="footer-logo">
+            <p><strong>Portal de Parceiros - Tecnologia que Conecta</strong></p>
+            <p>Desenvolvido com segurança e governança por Saltech Consultoria</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">LGPD</a>
+                <a href="#">Suporte</a>
+            </div>
+            <p style="margin-top: 25px; opacity: 0.6; font-size: 14px;">© 2025 Planeje TI | Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+
+</body>
+</html>
