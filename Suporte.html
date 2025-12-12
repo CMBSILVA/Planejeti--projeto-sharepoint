@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte - Portal de Parceiros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a4d68 0%, #088395 100%);
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            font-size: 22px;
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 80px;
+            padding: 0 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #088395, #00FFF5);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(8, 131, 149, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+
+        .contact-card p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail {
+            font-size: 20px;
+            font-weight: 600;
+            color: #088395;
+            margin-bottom: 15px;
+        }
+
+        .availability {
+            font-size: 14px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .info-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #088395;
+        }
+
+        .sla-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .sla-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .sla-card:hover {
+            border-color: #088395;
+            transform: translateY(-5px);
+        }
+
+        .priority-label {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .priority-urgent {
+            background: #ff4757;
+            color: white;
+        }
+
+        .priority-normal {
+            background: #ffa502;
+            color: white;
+        }
+
+        .priority-low {
+            background: #1e90ff;
+            color: white;
+        }
+
+        .sla-time {
+            font-size: 42px;
+            font-weight: 800;
+            color: #088395;
+            margin: 10px 0;
+        }
+
+        .sla-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #0a4d68 0%, #088395 100%);
+            border-radius: 20px;
+            padding: 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tips-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .tips-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tips-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: none;
+            color: white;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tip-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-item p {
+            font-size: 15px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+
+        .btn-primary {
+            background: #088395;
+            color: white;
+            box-shadow: 0 4px 15px rgba(8, 131, 149, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #0a4d68;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(8, 131, 149, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #088395;
+            border: 2px solid #088395;
+        }
+
+        .btn-secondary:hover {
+            background: #088395;
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid,
+            .sla-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 38px;
+            }
+
+            .contact-grid,
+            .sla-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-section,
+            .tips-section {
+                padding: 35px 25px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <h1>💬 Suporte ao Parceiro</h1>
+            <p>Nossa equipe está sempre disponível para auxiliar você com qualquer dúvida ou necessidade. Entre em contato através dos canais abaixo.</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Contact Methods -->
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>E-mail</h3>
+                <p>Envie sua dúvida ou solicitação por e-mail</p>
+                <div class="contact-detail">parceiros@planejeti.com.br</div>
+                <div class="availability">Resposta em até 24h úteis</div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3>Telefone</h3>
+                <p>Fale diretamente com nossa equipe</p>
+                <div class="contact-detail">(11) 4000-0000</div>
+                <div class="availability">Seg-Sex, 8h às 18h</div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">💬</div>
+                <h3>Chat Online</h3>
+                <p>Atendimento em tempo real via chat</p>
+                <div class="contact-detail">Iniciar Chat</div>
+                <div class="availability">Seg-Sex, 8h às 18h</div>
+            </div>
+        </div>
+
+        <!-- SLA Section -->
+        <div class="info-section">
+            <h2>⏱️ Tempo de Resposta (SLA)</h2>
+            <p style="color: #666; font-size: 18px; margin-bottom: 20px;">
+                Nossos tempos de resposta são baseados na prioridade da solicitação. Veja abaixo nossos compromissos de atendimento:
+            </p>
+
+            <div class="sla-grid">
+                <div class="sla-card">
+                    <span class="priority-label priority-urgent">Urgente</span>
+                    <div class="sla-time">4h</div>
+                    <p class="sla-description">Para problemas críticos que impedem operações ou acesso ao portal</p>
+                </div>
+
+                <div class="sla-card">
+                    <span class="priority-label priority-normal">Normal</span>
+                    <div class="sla-time">24h</div>
+                    <p class="sla-description">Para solicitações gerais, dúvidas e problemas não críticos</p>
+                </div>
+
+                <div class="sla-card">
+                    <span class="priority-label priority-low">Baixa</span>
+                    <div class="sla-time">72h</div>
+                    <p class="sla-description">Para melhorias, sugestões e demandas sem urgência</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hours & Location -->
+        <div class="info-section">
+            <h2>🕐 Horário de Atendimento</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 20px;">
+                <div>
+                    <h3 style="color: #088395; font-size: 20px; margin-bottom: 15px;">📅 Dias Úteis</h3>
+                    <p style="color: #666; font-size: 17px; line-height: 1.8;">
+                        <strong>Segunda a Sexta:</strong> 8h às 18h<br>
+                        <strong>Sábados:</strong> Fechado<br>
+                        <strong>Domingos e Feriados:</strong> Fechado
+                    </p>
+                </div>
+
+                <div>
+                    <h3 style="color: #088395; font-size: 20px; margin-bottom: 15px;">🌐 Suporte de Emergência</h3>
+                    <p style="color: #666; font-size: 17px; line-height: 1.8;">
+                        Para problemas críticos fora do horário comercial, envie e-mail com o assunto <strong>"URGENTE"</strong> para:<br>
+                        <strong style="color: #088395;">emergencia@planejeti.com.br</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-section">
+            <div class="tips-content">
+                <h2>💡 Dicas para um Atendimento mais Rápido</h2>
+                
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <h4><span>✅</span> Seja Específico</h4>
+                        <p>Descreva o problema com o máximo de detalhes possível: o que você estava fazendo, mensagens de erro, horário do problema.</p>
+                    </div>
+
+                    <div class="tip-item">
+                        <h4><span>📸</span> Anexe Capturas de Tela</h4>
+                        <p>Imagens ajudam muito! Se possível, envie prints da tela mostrando o erro ou a situação.</p>
+                    </div>
+
+                    <div class="tip-item">
+                        <h4><span>🔢</span> Informe o Número de Protocolo</h4>
+                        <p>Se você já abriu uma solicitação, sempre mencione o número de protocolo para continuidade do atendimento.</p>
+                    </div>
+
+                    <div class="tip-item">
+                        <h4><span>❓</span> Consulte o FAQ Primeiro</h4>
+                        <p>Muitas dúvidas comuns já estão respondidas na nossa seção de Perguntas Frequentes.</p>
+                    </div>
+
+                    <div class="tip-item">
+                        <h4><span>📧</span> Use E-mail Corporativo</h4>
+                        <p>Sempre utilize seu e-mail corporativo cadastrado para facilitar a identificação e agilizar o atendimento.</p>
+                    </div>
+
+                    <div class="tip-item">
+                        <h4><span>⏰</span> Defina a Prioridade Corretamente</h4>
+                        <p>Classifique sua solicitação com a prioridade adequada para que possamos atendê-lo no prazo correto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <a href="#nova-solicitacao" class="btn btn-primary">Abrir Nova Solicitação</a>
+            <a href="#faq" class="btn btn-secondary">Ver Perguntas Frequentes</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Add smooth entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    entry.target.style.transition = 'all 0.6s ease-out';
+                    
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contact-card, .info-section, .tips-section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
