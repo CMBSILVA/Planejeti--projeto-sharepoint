@@ -44,6 +44,25 @@
             z-index: 1;
         }
 
+        .header-logo {
+            height: 60px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .header h1 {
             font-size: 56px;
             font-weight: 800;
@@ -274,6 +293,10 @@
 
     <div class="header">
         <div class="header-content">
+            <img src="https://raw.githubusercontent.com/CMBSILVA/Planejeti--projeto-sharepoint/main/logo-planejeti.png" 
+                 alt="Planeje TI" 
+                 class="header-logo"
+                 onerror="this.style.display='none'">
             <h1>❓ Perguntas Frequentes</h1>
             <p>Encontre respostas rápidas para as dúvidas mais comuns</p>
         </div>
