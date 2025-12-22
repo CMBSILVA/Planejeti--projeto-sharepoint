@@ -1,442 +1,86 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Solicitações</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!-- CÓDIGO PARA COLOCAR NO SHAREPOINT (Web Part Script Editor) -->
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+<iframe 
+    id="minhasSolicitacoesFrame" 
+    src=""https://cmbsilva.github.io/Planejeti--projeto-sharepoint/MINHAS-SOLICITACOES-IFRAME.html"
+    style="width: 100%; height: 800px; border: none; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);"
+></iframe>
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
+<script>
+(function() {
+    const iframe = document.getElementById('minhasSolicitacoesFrame');
+    const siteUrl = _spPageContextInfo.webAbsoluteUrl;
+    const listName = 'Solicitaes';
+    const currentUserEmail = _spPageContextInfo.userEmail;
+    const currentUserName = _spPageContextInfo.userDisplayName;
 
-        .header {
-            background: linear-gradient(135deg, #0a4d68 0%, #088395 100%);
-            padding: 40px;
-            color: white;
-            text-align: center;
-        }
+    console.log('🚀 Iniciando busca de dados...');
+    console.log('User:', currentUserEmail);
+    console.log('Site:', siteUrl);
 
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+    // Aguardar iframe estar pronto
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'IFRAME_READY') {
+            console.log('✅ Iframe pronto, buscando dados...');
+            buscarDados();
         }
+    });
 
-        .user-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 15px;
-        }
+    // Buscar dados da lista
+    function buscarDados() {
+        const apiUrl = `${siteUrl}/_api/web/lists/getbytitle('${listName}')/items?$select=ID,Title,Status,Empresa,Prioridade,Solicitante,Created&$filter=Solicitante eq '${currentUserEmail}'&$orderby=Created desc&$top=100`;
 
-        .content {
-            padding: 40px;
-        }
+        console.log('📡 API URL:', apiUrl);
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 25px;
-            border-radius: 15px;
-            color: white;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .filters {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #088395;
-            background: white;
-            color: #088395;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #088395;
-            color: white;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            margin-bottom: 25px;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: #088395;
-        }
-
-        .solicitation-card {
-            background: #f8f9fa;
-            border-left: 5px solid #088395;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .solicitation-card:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transform: translateX(5px);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            flex: 1;
-        }
-
-        .status-badge {
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-pendente {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .status-em-andamento {
-            background: #cfe2ff;
-            color: #084298;
-        }
-
-        .status-concluida {
-            background: #d1e7dd;
-            color: #0a3622;
-        }
-
-        .card-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .detail-label {
-            font-weight: 600;
-            color: #088395;
-            margin-right: 5px;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 60px;
-            color: #666;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #088395;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .empty-state h3 {
-            font-size: 24px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .error {
-            background: #f8d7da;
-            border: 1px solid #f5c2c7;
-            color: #842029;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 24px;
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json;odata=verbose'
             }
-            .content {
-                padding: 20px;
+        })
+        .then(response => {
+            console.log('📥 Resposta recebida:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 Minhas Solicitações</h1>
-            <p>Portal de Parceiros Planeje TI</p>
-            <div class="user-badge" id="userBadge">
-                👤 <span id="userName">Aguardando dados...</span>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Aguardando dados do SharePoint...</p>
-            </div>
-
-            <div id="mainContent" style="display: none;">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number" id="totalCount">0</div>
-                        <div class="stat-label">Total</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="pendenteCount">0</div>
-                        <div class="stat-label">Pendentes</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="andamentoCount">0</div>
-                        <div class="stat-label">Em Andamento</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="concluidaCount">0</div>
-                        <div class="stat-label">Concluídas</div>
-                    </div>
-                </div>
-
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="todas">Todas</button>
-                    <button class="filter-btn" data-filter="Pendente">Pendentes</button>
-                    <button class="filter-btn" data-filter="Em Andamento">Em Andamento</button>
-                    <button class="filter-btn" data-filter="Concluída">Concluídas</button>
-                </div>
-
-                <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar por título, empresa...">
-
-                <div id="solicitationsGrid"></div>
-            </div>
-
-            <div id="errorMessage" class="error" style="display: none;"></div>
-        </div>
-    </div>
-
-    <script>
-        let allItems = [];
-        let filteredItems = [];
-        let siteUrl = '';
-        let listName = 'Solicitaes';
-
-        // Receber dados via postMessage do SharePoint
-        window.addEventListener('message', function(event) {
-            console.log('Mensagem recebida:', event.data);
+            return response.json();
+        })
+        .then(data => {
+            console.log('✅ Dados recebidos:', data.d.results.length, 'itens');
             
-            if (event.data.type === 'SHAREPOINT_DATA') {
-                const data = event.data;
-                
-                // Salvar configurações
-                siteUrl = data.siteUrl;
-                listName = data.listName || 'Solicitaes';
-                
-                // Atualizar usuário
-                document.getElementById('userName').textContent = data.userName || data.userEmail;
-                
-                // Salvar itens
-                allItems = data.items || [];
-                filteredItems = allItems;
-                
-                // Esconder loading
-                document.getElementById('loading').style.display = 'none';
-                
-                if (allItems.length > 0) {
-                    document.getElementById('mainContent').style.display = 'block';
-                    updateStats();
-                    renderSolicitations();
-                } else {
-                    document.getElementById('mainContent').style.display = 'block';
-                    document.getElementById('solicitationsGrid').innerHTML = `
-                        <div class="empty-state">
-                            <h3>📭 Nenhuma solicitação encontrada</h3>
-                            <p>Você ainda não tem solicitações registradas.</p>
-                        </div>
-                    `;
-                }
-            } else if (event.data.type === 'SHAREPOINT_ERROR') {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('errorMessage').textContent = 'Erro: ' + event.data.error;
-            }
-        });
-
-        // Atualizar estatísticas
-        function updateStats() {
-            document.getElementById('totalCount').textContent = allItems.length;
-            document.getElementById('pendenteCount').textContent = allItems.filter(i => i.Status === 'Pendente').length;
-            document.getElementById('andamentoCount').textContent = allItems.filter(i => i.Status === 'Em Andamento' || i.Status === 'Em Análise').length;
-            document.getElementById('concluidaCount').textContent = allItems.filter(i => i.Status === 'Concluída').length;
-        }
-
-        // Renderizar solicitações
-        function renderSolicitations() {
-            const grid = document.getElementById('solicitationsGrid');
+            // Enviar dados para o iframe
+            iframe.contentWindow.postMessage({
+                type: 'SHAREPOINT_DATA',
+                items: data.d.results,
+                siteUrl: siteUrl,
+                listName: listName,
+                userEmail: currentUserEmail,
+                userName: currentUserName
+            }, '*');
+        })
+        .catch(error => {
+            console.error('❌ Erro:', error);
             
-            if (filteredItems.length === 0) {
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <h3>🔍 Nenhuma solicitação encontrada</h3>
-                        <p>Tente ajustar os filtros ou busca.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filteredItems.map(item => {
-                const data = new Date(item.Created).toLocaleDateString('pt-BR');
-                const statusClass = item.Status === 'Pendente' ? 'status-pendente' : 
-                                   item.Status === 'Concluída' ? 'status-concluida' : 'status-em-andamento';
-
-                return `
-                    <div class="solicitation-card" onclick="abrirDetalhes(${item.ID})">
-                        <div class="card-header">
-                            <div class="card-title">${item.Title || 'Sem título'}</div>
-                            <span class="status-badge ${statusClass}">${item.Status || 'Pendente'}</span>
-                        </div>
-                        <div class="card-details">
-                            <div>
-                                <span class="detail-label">🏢 Empresa:</span>
-                                ${item.Empresa || '-'}
-                            </div>
-                            <div>
-                                <span class="detail-label">📅 Data:</span>
-                                ${data}
-                            </div>
-                            <div>
-                                <span class="detail-label">🆔 ID:</span>
-                                #${item.ID}
-                            </div>
-                            <div>
-                                <span class="detail-label">⚡ Prioridade:</span>
-                                ${item.Prioridade || '-'}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Abrir detalhes
-        function abrirDetalhes(id) {
-            if (siteUrl && listName) {
-                window.open(`${siteUrl}/Lists/${listName}/DispForm.aspx?ID=${id}`, '_blank');
-            }
-        }
-
-        // Filtros
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('filter-btn')) {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-
-                const filter = e.target.dataset.filter;
-                
-                if (filter === 'todas') {
-                    filteredItems = allItems;
-                } else {
-                    filteredItems = allItems.filter(item => item.Status === filter);
-                }
-
-                renderSolicitations();
-            }
+            // Enviar erro para o iframe
+            iframe.contentWindow.postMessage({
+                type: 'SHAREPOINT_ERROR',
+                error: error.message
+            }, '*');
         });
+    }
 
-        // Busca
-        document.getElementById('searchBox')?.addEventListener('input', function(e) {
-            const termo = e.target.value.toLowerCase();
-            
-            filteredItems = allItems.filter(item => 
-                (item.Title && item.Title.toLowerCase().includes(termo)) ||
-                (item.Empresa && item.Empresa.toLowerCase().includes(termo)) ||
-                (item.ID && item.ID.toString().includes(termo))
-            );
+    // Se o iframe já estiver carregado, buscar imediatamente
+    iframe.addEventListener('load', function() {
+        console.log('🖼️ Iframe carregado');
+        // Aguardar 500ms para garantir que o script do iframe está pronto
+        setTimeout(buscarDados, 500);
+    });
+})();
+</script>
 
-            renderSolicitations();
-        });
-
-        // Notificar o pai que estamos prontos
-        window.parent.postMessage({ type: 'IFRAME_READY' }, '*');
-    </script>
-</body>
-</html>
+<style>
+/* Estilos opcionais para o container */
+#minhasSolicitacoesFrame {
+    margin: 20px 0;
+}
+</style>
