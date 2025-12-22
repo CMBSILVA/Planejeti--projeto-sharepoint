@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Solicitações - Debug</title>
+    <title>Minhas Solicitações</title>
     <style>
         * {
             margin: 0;
@@ -29,56 +29,170 @@
 
         .header {
             background: linear-gradient(135deg, #0a4d68 0%, #088395 100%);
-            padding: 30px;
+            padding: 40px;
             color: white;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
-        .user-info {
-            background: rgba(255,255,255,0.1);
-            padding: 10px 15px;
-            margin-top: 15px;
-            border-radius: 8px;
-            font-size: 13px;
+        .user-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
             display: inline-block;
+            margin-top: 15px;
         }
 
         .content {
-            padding: 30px;
+            padding: 40px;
         }
 
-        .debug-info {
-            background: #f8f9fa;
-            border-left: 4px solid #088395;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
-        .debug-info h3 {
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #088395;
+            background: white;
             color: #088395;
-            margin-bottom: 10px;
-            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
         }
 
-        .debug-info pre {
-            background: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #088395;
+            color: white;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #088395;
+        }
+
+        .solicitation-card {
+            background: #f8f9fa;
+            border-left: 5px solid #088395;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .solicitation-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
             font-size: 12px;
-            max-height: 300px;
-            overflow-y: auto;
+            font-weight: 600;
+        }
+
+        .status-pendente {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-em-andamento {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .status-concluida {
+            background: #d1e7dd;
+            color: #0a3622;
+        }
+
+        .card-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #088395;
+            margin-right: 5px;
         }
 
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 60px;
             color: #666;
         }
 
@@ -97,284 +211,232 @@
             100% { transform: rotate(360deg); }
         }
 
-        .error-message {
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .error {
             background: #f8d7da;
             border: 1px solid #f5c2c7;
             color: #842029;
             padding: 20px;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 20px;
         }
 
-        .solicitation-card {
-            background: #f8f9fa;
-            border-left: 5px solid #088395;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .solicitation-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateX(5px);
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .card-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .info-label {
-            font-weight: 600;
-            color: #088395;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #088395;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .btn:hover {
-            background: #0a4d68;
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            .content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 Minhas Solicitações - Modo Debug</h1>
-            <p>Diagnóstico e visualização de dados</p>
-            <div class="user-info">
-                👤 <span id="currentUser">Carregando...</span>
+            <h1>📊 Minhas Solicitações</h1>
+            <p>Portal de Parceiros Planeje TI</p>
+            <div class="user-badge" id="userBadge">
+                👤 <span id="userName">Aguardando dados...</span>
             </div>
         </div>
 
         <div class="content">
-            <!-- Debug Info -->
-            <div class="debug-info">
-                <h3>🔍 Informações de Conexão</h3>
-                <pre id="debugInfo">Inicializando...</pre>
-            </div>
-
-            <!-- Loading -->
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Carregando solicitações...</p>
+                <p>Aguardando dados do SharePoint...</p>
             </div>
 
-            <!-- Error -->
-            <div class="error-message" id="errorMessage" style="display: none;">
-                <h4>⚠️ Erro ao carregar dados</h4>
-                <p id="errorText"></p>
-                <pre id="errorDetails" style="margin-top: 10px; background: white; padding: 10px; border-radius: 5px; font-size: 12px; overflow-x: auto;"></pre>
+            <div id="mainContent" style="display: none;">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalCount">0</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendenteCount">0</div>
+                        <div class="stat-label">Pendentes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="andamentoCount">0</div>
+                        <div class="stat-label">Em Andamento</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="concluidaCount">0</div>
+                        <div class="stat-label">Concluídas</div>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="todas">Todas</button>
+                    <button class="filter-btn" data-filter="Pendente">Pendentes</button>
+                    <button class="filter-btn" data-filter="Em Andamento">Em Andamento</button>
+                    <button class="filter-btn" data-filter="Concluída">Concluídas</button>
+                </div>
+
+                <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar por título, empresa...">
+
+                <div id="solicitationsGrid"></div>
             </div>
 
-            <!-- Lista -->
-            <div id="solicitationsContainer"></div>
-
-            <!-- Raw Data -->
-            <div class="debug-info" id="rawDataContainer" style="display: none;">
-                <h3>📦 Dados Brutos (Raw Data)</h3>
-                <pre id="rawData"></pre>
-            </div>
+            <div id="errorMessage" class="error" style="display: none;"></div>
         </div>
     </div>
 
     <script>
-        // Função para adicionar log de debug
-        function addDebugLog(message, data = null) {
-            const debugInfo = document.getElementById('debugInfo');
-            const timestamp = new Date().toLocaleTimeString();
-            let logMessage = `[${timestamp}] ${message}`;
+        let allItems = [];
+        let filteredItems = [];
+        let siteUrl = '';
+        let listName = 'Solicitaes';
+
+        // Receber dados via postMessage do SharePoint
+        window.addEventListener('message', function(event) {
+            console.log('Mensagem recebida:', event.data);
             
-            if (data) {
-                logMessage += '\n' + JSON.stringify(data, null, 2);
-            }
-            
-            debugInfo.textContent += logMessage + '\n\n';
-            console.log(message, data);
-        }
-
-        // Inicialização
-        addDebugLog('🚀 Iniciando aplicação...');
-
-        // Verificar se está no SharePoint
-        if (typeof _spPageContextInfo === 'undefined') {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('errorText').textContent = 'Esta página precisa estar no SharePoint para funcionar!';
-            addDebugLog('❌ ERRO: _spPageContextInfo não está definido. Não está no SharePoint!');
-        } else {
-            // Informações do contexto
-            const siteUrl = _spPageContextInfo.webAbsoluteUrl;
-            const currentUser = _spPageContextInfo.userLoginName;
-            const currentUserEmail = _spPageContextInfo.userEmail;
-            const currentUserName = _spPageContextInfo.userDisplayName;
-
-            addDebugLog('✅ Contexto SharePoint detectado', {
-                'Site URL': siteUrl,
-                'User Login': currentUser,
-                'User Email': currentUserEmail,
-                'User Name': currentUserName
-            });
-
-            document.getElementById('currentUser').textContent = currentUserName || currentUserEmail;
-
-            // Configuração da lista
-            const listName = 'Solicitaes';
-            
-            addDebugLog('📋 Configuração da lista', {
-                'Nome da Lista': listName
-            });
-
-            // Carregar solicitações
-            async function loadSolicitations() {
-                try {
-                    // URL da API - VERSÃO SIMPLES (todos os campos)
-                    const apiUrl = `${siteUrl}/_api/web/lists/getbytitle('${listName}')/items?$orderby=Created desc&$top=50`;
-                    
-                    addDebugLog('🌐 Fazendo requisição para API', {
-                        'URL': apiUrl
-                    });
-
-                    const response = await fetch(apiUrl, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json;odata=verbose',
-                            'Content-Type': 'application/json;odata=verbose'
-                        }
-                    });
-
-                    addDebugLog('📡 Resposta recebida', {
-                        'Status': response.status,
-                        'Status Text': response.statusText,
-                        'OK': response.ok
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                    }
-
-                    const data = await response.json();
-                    
-                    addDebugLog('✅ Dados parseados com sucesso', {
-                        'Total de itens': data.d.results.length
-                    });
-
-                    // Mostrar dados brutos
-                    document.getElementById('rawData').textContent = JSON.stringify(data.d.results, null, 2);
-                    document.getElementById('rawDataContainer').style.display = 'block';
-
-                    // Filtrar por usuário atual (usando Author/Email)
-                    const myItems = data.d.results.filter(item => {
-                        // Tentar filtrar por vários campos possíveis
-                        return (item.AuthorId && item.AuthorId === _spPageContextInfo.userId) ||
-                               (item.Author && item.Author.EMail && item.Author.EMail === currentUserEmail);
-                    });
-
-                    addDebugLog('🔍 Itens filtrados para o usuário atual', {
-                        'Total encontrado': myItems.length,
-                        'Usuário': currentUserEmail
-                    });
-
-                    document.getElementById('loading').style.display = 'none';
-
-                    if (myItems.length === 0) {
-                        document.getElementById('solicitationsContainer').innerHTML = `
-                            <div style="text-align: center; padding: 40px; color: #999;">
-                                <h3>📭 Nenhuma solicitação encontrada</h3>
-                                <p>Você ainda não tem solicitações registradas ou elas foram criadas por outro usuário.</p>
-                                <p style="font-size: 12px; margin-top: 20px;">Total de itens na lista: ${data.d.results.length}</p>
-                            </div>
-                        `;
-                    } else {
-                        renderSolicitations(myItems);
-                    }
-
-                } catch (error) {
-                    addDebugLog('❌ ERRO', {
-                        'Mensagem': error.message,
-                        'Stack': error.stack
-                    });
-
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('errorMessage').style.display = 'block';
-                    document.getElementById('errorText').textContent = error.message;
-                    document.getElementById('errorDetails').textContent = error.stack || 'Sem detalhes adicionais';
-                }
-            }
-
-            // Renderizar solicitações
-            function renderSolicitations(items) {
-                const container = document.getElementById('solicitationsContainer');
-                container.innerHTML = '';
-
-                items.forEach((item, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'solicitation-card';
-                    
-                    // Pegar campos disponíveis
-                    const title = item.Title || 'Sem título';
-                    const id = item.ID || item.Id || '-';
-                    const created = item.Created ? new Date(item.Created).toLocaleDateString('pt-BR') : '-';
-                    
-                    // Montar HTML do card
-                    let cardHTML = `
-                        <div class="card-title">${title}</div>
-                        <div class="card-info">
-                            <div><span class="info-label">ID:</span> #${id}</div>
-                            <div><span class="info-label">Criado em:</span> ${created}</div>
-                    `;
-
-                    // Adicionar outros campos disponíveis
-                    const fieldsToShow = ['Status', 'Empresa', 'Tipo_Solicitacao', 'Titulo'];
-                    fieldsToShow.forEach(field => {
-                        if (item[field]) {
-                            const label = field.replace(/_/g, ' ');
-                            cardHTML += `<div><span class="info-label">${label}:</span> ${item[field]}</div>`;
-                        }
-                    });
-
-                    cardHTML += `
+            if (event.data.type === 'SHAREPOINT_DATA') {
+                const data = event.data;
+                
+                // Salvar configurações
+                siteUrl = data.siteUrl;
+                listName = data.listName || 'Solicitaes';
+                
+                // Atualizar usuário
+                document.getElementById('userName').textContent = data.userName || data.userEmail;
+                
+                // Salvar itens
+                allItems = data.items || [];
+                filteredItems = allItems;
+                
+                // Esconder loading
+                document.getElementById('loading').style.display = 'none';
+                
+                if (allItems.length > 0) {
+                    document.getElementById('mainContent').style.display = 'block';
+                    updateStats();
+                    renderSolicitations();
+                } else {
+                    document.getElementById('mainContent').style.display = 'block';
+                    document.getElementById('solicitationsGrid').innerHTML = `
+                        <div class="empty-state">
+                            <h3>📭 Nenhuma solicitação encontrada</h3>
+                            <p>Você ainda não tem solicitações registradas.</p>
                         </div>
-                        <a href="${siteUrl}/Lists/${listName}/DispForm.aspx?ID=${id}" class="btn" target="_blank">
-                            Ver Detalhes →
-                        </a>
                     `;
+                }
+            } else if (event.data.type === 'SHAREPOINT_ERROR') {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = 'Erro: ' + event.data.error;
+            }
+        });
 
-                    card.innerHTML = cardHTML;
-                    container.appendChild(card);
+        // Atualizar estatísticas
+        function updateStats() {
+            document.getElementById('totalCount').textContent = allItems.length;
+            document.getElementById('pendenteCount').textContent = allItems.filter(i => i.Status === 'Pendente').length;
+            document.getElementById('andamentoCount').textContent = allItems.filter(i => i.Status === 'Em Andamento' || i.Status === 'Em Análise').length;
+            document.getElementById('concluidaCount').textContent = allItems.filter(i => i.Status === 'Concluída').length;
+        }
 
-                    addDebugLog(`✅ Card ${index + 1} renderizado`, {
-                        'ID': id,
-                        'Título': title
-                    });
-                });
+        // Renderizar solicitações
+        function renderSolicitations() {
+            const grid = document.getElementById('solicitationsGrid');
+            
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>🔍 Nenhuma solicitação encontrada</h3>
+                        <p>Tente ajustar os filtros ou busca.</p>
+                    </div>
+                `;
+                return;
             }
 
-            // Executar ao carregar
-            window.addEventListener('DOMContentLoaded', () => {
-                addDebugLog('📄 DOM carregado, iniciando busca...');
-                loadSolicitations();
-            });
+            grid.innerHTML = filteredItems.map(item => {
+                const data = new Date(item.Created).toLocaleDateString('pt-BR');
+                const statusClass = item.Status === 'Pendente' ? 'status-pendente' : 
+                                   item.Status === 'Concluída' ? 'status-concluida' : 'status-em-andamento';
+
+                return `
+                    <div class="solicitation-card" onclick="abrirDetalhes(${item.ID})">
+                        <div class="card-header">
+                            <div class="card-title">${item.Title || 'Sem título'}</div>
+                            <span class="status-badge ${statusClass}">${item.Status || 'Pendente'}</span>
+                        </div>
+                        <div class="card-details">
+                            <div>
+                                <span class="detail-label">🏢 Empresa:</span>
+                                ${item.Empresa || '-'}
+                            </div>
+                            <div>
+                                <span class="detail-label">📅 Data:</span>
+                                ${data}
+                            </div>
+                            <div>
+                                <span class="detail-label">🆔 ID:</span>
+                                #${item.ID}
+                            </div>
+                            <div>
+                                <span class="detail-label">⚡ Prioridade:</span>
+                                ${item.Prioridade || '-'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
+
+        // Abrir detalhes
+        function abrirDetalhes(id) {
+            if (siteUrl && listName) {
+                window.open(`${siteUrl}/Lists/${listName}/DispForm.aspx?ID=${id}`, '_blank');
+            }
+        }
+
+        // Filtros
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('filter-btn')) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+
+                const filter = e.target.dataset.filter;
+                
+                if (filter === 'todas') {
+                    filteredItems = allItems;
+                } else {
+                    filteredItems = allItems.filter(item => item.Status === filter);
+                }
+
+                renderSolicitations();
+            }
+        });
+
+        // Busca
+        document.getElementById('searchBox')?.addEventListener('input', function(e) {
+            const termo = e.target.value.toLowerCase();
+            
+            filteredItems = allItems.filter(item => 
+                (item.Title && item.Title.toLowerCase().includes(termo)) ||
+                (item.Empresa && item.Empresa.toLowerCase().includes(termo)) ||
+                (item.ID && item.ID.toString().includes(termo))
+            );
+
+            renderSolicitations();
+        });
+
+        // Notificar o pai que estamos prontos
+        window.parent.postMessage({ type: 'IFRAME_READY' }, '*');
     </script>
 </body>
 </html>
